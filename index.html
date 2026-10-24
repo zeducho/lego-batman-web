@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lego Batman - PSP</title>
-    <!-- Ativa o Service Worker para liberar SharedArrayBuffer -->
     <script src="coi-serviceworker.js"></script>
     <style>
         * { box-sizing: border-box; }
@@ -34,7 +33,10 @@
     <script type="text/javascript">
         EJS_player = '#game';
         EJS_core = 'psp';
-        EJS_gameUrl = 'https://archive.org/download/lego-batman-iso-psp/LEGO_Batman_ISO_PSP.iso';
+        
+        // Usando o Corsproxy para o Archive.org liberar o download no navegador sem erro de CORS
+        EJS_gameUrl = 'https://corsproxy.io/?https://archive.org/download/lego-batman-iso-psp/LEGO_Batman_ISO_PSP.iso';
+        
         EJS_threads = true;
         EJS_language = 'en-US';
         EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
