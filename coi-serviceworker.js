@@ -1,5 +1,4 @@
-/*! coi-serviceworker v0.1.7 - Guido Zuidhof, licensed under MIT */
-let coepCredentialless = false;
+/*! coi-serviceworker v0.1.7 - adjusted */
 if (typeof window === 'undefined') {
     self.addEventListener('install', () => self.skipWaiting());
     self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
@@ -12,7 +11,7 @@ if (typeof window === 'undefined') {
                 if (response.status === 0) return response;
 
                 const newHeaders = new Headers(response.headers);
-                newHeaders.set('Cross-Origin-Embedder-Policy', coepCredentialless ? 'credentialless' : 'require-corp');
+                newHeaders.set('Cross-Origin-Embedder-Policy', 'require-corp');
                 newHeaders.set('Cross-Origin-Opener-Policy', 'same-origin');
 
                 return new Response(response.body, {
@@ -20,7 +19,7 @@ if (typeof window === 'undefined') {
                     statusText: response.statusText,
                     headers: newHeaders,
                 });
-            }).catch((e) => console.error(e))
+            }).catch(() => fetch(event.request))
         );
     });
 } else {
@@ -32,16 +31,13 @@ if (typeof window === 'undefined') {
         }
         if (window.crossOriginIsolated) return;
 
-        const registration = navigator.serviceWorker.register(script.src);
-        registration.then((reg) => {
+        navigator.serviceWorker.register(script.src).then((reg) => {
             reg.addEventListener('updatefound', () => {
                 const installingWorker = reg.installing;
                 installingWorker.addEventListener('statechange', () => {
-                    if (installingWorker.state === 'installed') {
-                        if (navigator.serviceWorker.controller) {
-                            window.sessionStorage.setItem('coiReloadedBySW', 'true');
-                            window.location.reload();
-                        }
+                    if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                        window.sessionStorage.setItem('coiReloadedBySW', 'true');
+                        window.location.reload();
                     }
                 });
             });
