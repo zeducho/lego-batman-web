@@ -35,12 +35,22 @@
         EJS_player = '#game';
         EJS_core = 'psp';
         
-        // Link direto do Hugging Face (100% livre de CORS e sem limite de banda)
+        // Link direto da ISO no Hugging Face
         EJS_gameUrl = 'https://huggingface.co/datasets/PingolaMurcha/lego-batman-psp/resolve/main/LEGO_Batman_ISO_PSP.iso';
         
         EJS_threads = true;
         EJS_language = 'en-US';
         EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
+
+        // Configurações injetadas para rodar leve em PCs fracos
+        EJS_config = {
+            // Força resolução nativa baixa para não pesar na GPU integrada fraca
+            ppsspp_rendering_mode: 'buffered',
+            ppsspp_internal_resolution: '1', 
+            // Desativa efeitos pesados que destroem o FPS
+            ppsspp_anisotropic_filtering: '1',
+            ppsspp_texture_filtering: '1'
+        };
     </script>
     <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
 
