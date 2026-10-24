@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lego Batman - Web</title>
-    <!-- Ativa suporte a SharedArrayBuffer e Threads no PSP -->
+    <title>Lego Batman - PSP</title>
+    <!-- Ativa o Service Worker para liberar SharedArrayBuffer -->
     <script src="coi-serviceworker.js"></script>
     <style>
         * { box-sizing: border-box; }
@@ -33,9 +33,10 @@
 
     <script type="text/javascript">
         EJS_player = '#game';
-        EJS_gameUrl = 'https://archive.org/download/lego-batman-iso-psp/LEGO_Batman_ISO_PSP.iso';
         EJS_core = 'psp';
+        EJS_gameUrl = 'https://archive.org/download/lego-batman-iso-psp/LEGO_Batman_ISO_PSP.iso';
         EJS_threads = true;
+        EJS_language = 'en-US';
         EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
     </script>
     <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
