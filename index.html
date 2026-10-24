@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lego Batman - PSP</title>
+    <!-- Carrega o Service Worker das threads -->
     <script src="coi-serviceworker.js"></script>
     <style>
         * { box-sizing: border-box; }
@@ -34,8 +35,8 @@
         EJS_player = '#game';
         EJS_core = 'psp';
         
-        // Usando o Corsproxy para o Archive.org liberar o download no navegador sem erro de CORS
-        EJS_gameUrl = 'https://corsproxy.io/?https://archive.org/download/lego-batman-iso-psp/LEGO_Batman_ISO_PSP.iso';
+        // Link direto e público do arquivo da sua Release no GitHub:
+        EJS_gameUrl = 'https://github.com/zeducho/lego-batman-web/releases/download/v1.0/LEGO_Batman_ISO_PSP.iso';
         
         EJS_threads = true;
         EJS_language = 'en-US';
