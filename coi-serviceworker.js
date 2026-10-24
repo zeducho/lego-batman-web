@@ -1,9 +1,14 @@
-/*! coi-serviceworker v0.1.7 - adjusted */
+/*! coi-serviceworker v0.1.7 - CORS pass-through fix */
 if (typeof window === 'undefined') {
     self.addEventListener('install', () => self.skipWaiting());
     self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
 
     self.addEventListener('fetch', (event) => {
+        // Se a requisição for para outro site (tipo a ISO), deixa o navegador tratar normalmente
+        if (!event.request.url.startsWith(self.location.origin)) {
+            return;
+        }
+
         if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') return;
 
         event.respondWith(
